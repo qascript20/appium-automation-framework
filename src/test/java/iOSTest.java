@@ -8,8 +8,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class FirstTest {
-
+public class iOSTest {
 
     public AndroidDriver driver;
 
@@ -18,16 +17,17 @@ public class FirstTest {
         String appiumServerUrl = "http://127.0.0.1:4723";
 
         DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability("platformName","Android");
-        dc.setCapability("appium:automationName","uiautomator2");
-        dc.setCapability("appium:app",System.getProperty("user.dir")+ "/apps/ApiDemos.apk");
+        dc.setCapability("platformName","IOS");
+        dc.setCapability("appium:automationName","XCUITest");
+        dc.setCapability("appium:app",System.getProperty("user.dir")+ "/apps/UIKitCatalog.app");
+        dc.setCapability("appium:deviceName","iPhone 15 Pro");
 
         driver = new AndroidDriver(new URL(appiumServerUrl),dc);
     }
 
     @Test
     public void test(){
-        driver.findElement(AppiumBy.accessibilityId("Accessibility")).click();
+        driver.findElement(AppiumBy.accessibilityId("Buttons")).click();
     }
 
     @AfterTest
