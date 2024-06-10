@@ -1,5 +1,5 @@
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class iOSTest {
 
-    public AndroidDriver driver;
+    public IOSDriver driver;
 
     @BeforeTest
     public void setup() throws MalformedURLException {
@@ -22,7 +22,7 @@ public class iOSTest {
         dc.setCapability("appium:app",System.getProperty("user.dir")+ "/apps/UIKitCatalog.app");
         dc.setCapability("appium:deviceName","iPhone 15 Pro");
 
-        driver = new AndroidDriver(new URL(appiumServerUrl),dc);
+        driver = new IOSDriver(new URL(appiumServerUrl),dc);
     }
 
     @Test
