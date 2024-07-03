@@ -1,16 +1,14 @@
-package ios;
-
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class FirstTest {
+public class ManageApps {
 
     public IOSDriver driver;
 
@@ -25,11 +23,21 @@ public class FirstTest {
         dc.setCapability("appium:deviceName","iPhone 15 Pro");
 
         driver = new IOSDriver(new URL(appiumServerUrl),dc);
+
     }
 
     @Test
     public void test(){
-        driver.findElement(AppiumBy.accessibilityId("Buttons")).click();
+        //Is App Installed
+        boolean appInstalled = driver.isAppInstalled("com.example.apple-samplecode.UICatalog");
+        System.out.println(appInstalled);
+
+        //Remove the app
+        driver.removeApp("com.example.apple-samplecode.UICatalog");
+
+        //Install the app
+        driver.installApp(System.getProperty("user.dir")+ "/apps/UIKitCatalog.app");
+
     }
 
     @AfterTest
