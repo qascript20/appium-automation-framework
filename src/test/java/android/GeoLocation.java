@@ -1,6 +1,7 @@
 package android;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.Location;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
@@ -10,8 +11,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class FirstTest {
-
+public class GeoLocation {
 
     public AndroidDriver driver;
 
@@ -23,15 +23,18 @@ public class FirstTest {
         dc.setCapability("platformName","Android");
         dc.setCapability("appium:automationName","uiautomator2");
         dc.setCapability("appium:app",System.getProperty("user.dir")+ "/apps/ApiDemos.apk");
-        dc.setCapability("appium:deviceName","moto_e20");
-        dc.setCapability("appium:platformVersion","11");
 
         driver = new AndroidDriver(new URL(appiumServerUrl),dc);
     }
 
     @Test
     public void test(){
-        driver.findElement(AppiumBy.accessibilityId("Accessibility")).click();
+
+      Location location =  driver.getLocation();
+      System.out.println("Current GeoLocation: " + location.getLatitude() + " " + location.getLatitude() + " " + location.getAltitude());
+
+      driver.setLocation(new Location(100, 200, 10.0));
+
     }
 
     @AfterTest
