@@ -1,5 +1,6 @@
 package ios;
 
+import appium.ManageAppiumServer;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,6 +25,7 @@ public class FirstTest {
         dc.setCapability("appium:app",System.getProperty("user.dir")+ "/apps/UIKitCatalog.app");
         dc.setCapability("appium:deviceName","iPhone 15 Pro");
 
+        ManageAppiumServer.startAppiumServer();
         driver = new IOSDriver(new URL(appiumServerUrl),dc);
     }
 
@@ -35,5 +37,6 @@ public class FirstTest {
     @AfterTest
     public void close(){
         driver.quit();
+        ManageAppiumServer.stopAppiumServer();
     }
 }
